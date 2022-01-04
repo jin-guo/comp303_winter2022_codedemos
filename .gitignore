@@ -1,2 +1,4 @@
 # Project exclude paths
 /out/
+/.idea/
+/comp303_winter2022_codedemos.iml
