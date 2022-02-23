@@ -4,11 +4,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SpecialCircle extends Circle implements Cloneable{
+public class SpecialCircle extends Circle{
     public enum Style {
         ART, COMIC, CLASSIC, NEW_AGE
     }
-
     final private String aText;
     private Set<Style> styles;
     public SpecialCircle(int x_center, int y_center, int pRadius, String pText, Style[] pStyles) {
@@ -21,11 +20,9 @@ public class SpecialCircle extends Circle implements Cloneable{
 
     @Override
     public SpecialCircle clone() {
-
         SpecialCircle clone = (SpecialCircle) super.clone();
         clone.styles = new HashSet<>(this.styles);
         return clone;
-
     }
 
 
