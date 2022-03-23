@@ -27,6 +27,7 @@ public class DesignTeam implements ApplicationObserver
 	@Override
 	public void applicationRemoved(JobSeeker pJobSeeker)
 	{
+		assert pJobSeeker != null;
 		if(aCandidate.contains(pJobSeeker)) 
 		{
 			aCandidate.remove(pJobSeeker);

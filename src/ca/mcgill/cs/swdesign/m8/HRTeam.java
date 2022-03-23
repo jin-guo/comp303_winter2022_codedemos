@@ -30,7 +30,7 @@ public class HRTeam implements ApplicationObserver
 	@Override
 	public void applicationRemoved(JobSeeker pJobSeeker)
 	{
-	
+		assert pJobSeeker != null;
 		int count = aSpectialtyCount.get(pJobSeeker.getTechSpecialty())-1;
 		aSpectialtyCount.put(pJobSeeker.getTechSpecialty(), count);	
 		

@@ -21,14 +21,17 @@ import java.util.function.BiConsumer;
  */
 public class Company implements JobProvider, ApplicationPool
 {
+	private final String aName;
 	private final List<JobSeeker> aJobseekers;
 	private boolean acceptApplication;
 	private final Map<JobSeeker, LocalDateTime> aInterviewSchedules;
 	
 	private List<ApplicationObserver> aApplicationObservers;
 	
-	public Company()
+	public Company(String pName)
 	{
+		assert pName!=null;
+		aName = pName;
 		aJobseekers = new ArrayList<>();
 		aInterviewSchedules = new HashMap<>();
 		aApplicationObservers = new ArrayList<>();
@@ -89,9 +92,10 @@ public class Company implements JobProvider, ApplicationPool
 	
 	/**
 	 * Setup interview date is three days from today 
-	 * @param pJobseeker the candidate to schedule a interview for.
+	 * @param pJobseeker the candidate to schedule an interview for.
 	 */
 	private void scheduleInterview(JobSeeker pJobseeker) {
+		assert pJobseeker != null;
         aInterviewSchedules.put(pJobseeker, LocalDateTime.now().plusDays(3));
 	}
 	
@@ -101,6 +105,7 @@ public class Company implements JobProvider, ApplicationPool
 	 */
 	private void notifyApplicationAdded(JobSeeker pJobseeker)
 	{
+		assert pJobseeker != null;
 		for(ApplicationObserver observer:aApplicationObservers)
 		{
 			observer.applicationAdded(pJobseeker);
@@ -120,6 +125,12 @@ public class Company implements JobProvider, ApplicationPool
 		}
 	}
 
+	@Override
+	public String toString()
+	{
+		return aName;
+	}
+
 	public static void main(String[] arg)
 	{
 		JobSeeker j1 = new UndergradJobSeeker(TechSpecialty.Testing, 0, true);
@@ -127,7 +138,7 @@ public class Company implements JobProvider, ApplicationPool
 		JobSeeker j3 = new UndergradJobSeeker(TechSpecialty.UI_Design, 10, true);
 		JobSeeker j4 = new UndergradJobSeeker(TechSpecialty.Programming,2,false);
 
-		Company startup = new Company();
+		Company startup = new Company("McGill");
 		ApplicationObserver hrTeam = new HRTeam();
 		ApplicationObserver designTeam = new DesignTeam();
 		startup.addApplicationObserver(hrTeam);
