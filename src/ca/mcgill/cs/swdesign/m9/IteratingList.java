@@ -51,11 +51,8 @@ public class IteratingList
 			}
 
 		});
-		try {
-			tA.start();
-		}catch (Exception e) {
 
-		}
+		tA.start();
 		tB.start();
 
 	}
